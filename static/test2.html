@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Test</title>
+  </head>
+  <body>
+    <h1> About test 1 </h1>
+    <p> Need to send file data to predict.py.</p>
+	<input id ="image-selector" type = "file">
+	<button id = "predict-button"> Predict</button
+	<p style= "font-weight:bold"> Predictions</p>
+	<p> CNV: <span id= "cnv-prediction"></span></p>
+	<p> DMV: <span id= "dmv-prediction"></span></p>
+	<p> DRUSEN: <span id= "DRUSEN-prediction"></span></p>
+	<img id=" selected-image" src=""/>
+	
+	<script srce="https//code.jquery.com/jquery-3.3.1.min.js"></script>
+   	<script>
+		let base64Image
+		$("#image-selector").change(function() {
+			let reader = new FileReader();
+			reader.onload = function(e) {
+			$("#selected-image).attr(srs", dataURL);
+			base64Image = dataURL.replace("data:image/jpeg;base64,","");
+			console.log(base64Image);
+		
+		
+		
+		$("#predict-button").click(function(event){
+			let message = {
+			image: base64Image
+		}
+		console.log(message);
+		$.post("http://127.0.0.1:5000/predict", JSON.stringify(message), function(response){
+		console.log(response);
+	});
+	
+	</script>	
+  </body>
+</html>

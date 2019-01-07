@@ -1,0 +1,46 @@
+<DOCTYPE html>
+<html>
+<head>
+	<title> Predict </title>
+	<style>
+		*{
+			font-size:30px;
+		}
+	<style>
+</head>
+<body>
+	<input id ="image-selector" type = "file">
+	<button id = "predict-button"> Predict</button>
+	<p style= "font-weight:bold"> Predictions</p>
+	<p> CNV: <span id= "cnv-prediction"></span></p>
+	<p> DMV: <span id= "dmv-prediction"></span></p>
+	<p> DRUSEN: <span id= "DRUSEN-prediction"></span></p>
+	<img id=" selected-image" src=""/>
+	
+	<script srce="https//code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script>
+		let base64Image
+		$("#image-selector").change(function() {
+			let reader = new FileReader();
+			reader.onload = function(e) {
+			$("#selected-image).attr(srs", dataURL);
+			base64Image = dataURL.replace("data:image/jpeg;base64,","");
+			console.log(base64Image);
+		}
+		reader.readAsDataURL($("#image-selector")[0].files[0]0;
+		$("#cnv-prediction").text("");
+		$("#DMV-prediction").text("");
+		$("#DRUSEN-prediction").text("");
+	
+	});
+	$("#predict-button").click(function(event){
+		let message = {
+			image: base64Image
+		}
+		console.log(message);
+		$.post("http://127.0.0.1:5000/predict", JSON.stringify(message), function(response){
+		console.log(response);
+	});
+	</script>
+</body>
+</html>
